@@ -1,5 +1,7 @@
-import firebase from 'firebase/app';
+import app from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
 
 const config = {
     apiKey: "AIzaSyB6F0Y7RndU5yRHAcgs7DYS2XteeHDHjJA",
@@ -10,6 +12,16 @@ const config = {
     messagingSenderId: "313380505217"
 };
 
-firebase.initializeApp(config);
-const firestore = new firebase.firestore()
-export { firestore }
+class Firebase{
+    constructor(){
+        app.initializeApp(config);
+        this.firestore = app.firestore();
+        this.storage = app.storage();
+        this.auth = app.auth();
+        // this.auth.
+    }
+    doSignInWithEmailAndPassword(email,password){
+        return this.auth.signInWithEmailAndPassword(email,password)
+    }
+}
+export default new Firebase();
