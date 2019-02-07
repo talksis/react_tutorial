@@ -12,7 +12,6 @@ class App extends Component {
       tasks: [
       ],
       task: '',
-      error: false,
       login: true
     }
     if (firebase.auth.currentUser === null) {
@@ -30,7 +29,6 @@ class App extends Component {
         })
         this.setState({ tasks })
       })
-      .catch(e => { this.setState({ error: true }) });
   }
   onClickHanlder = (e) => {
     e.preventDefault();
@@ -43,7 +41,6 @@ class App extends Component {
           task: ''
         })
       })
-      .catch(e => { this.setState({ error: true }) });
   }
   onChangeHanlder = (e) => {
     this.setState({
@@ -57,7 +54,6 @@ class App extends Component {
         const tasks = this.state.tasks.filter((task) => task.id !== id)
         this.setState({ tasks });
       })
-      .catch(e => { this.setState({ error: true }) });
     // const tasks = this.state.tasks.filter((task, i) => i !== idx)
     // this.setState({ tasks });
   }
@@ -85,7 +81,6 @@ class App extends Component {
             </div>
           </div>
           : <Login login={this.checkLogin}></Login>}
-        {this.state.error&&this.state.login ? <div className="notification is-danger"> <p>에러입니다.</p> </div> : null}
       </div>
     );
   }
