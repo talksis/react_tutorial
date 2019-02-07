@@ -10,7 +10,7 @@
 /.firebase
 .firebaserc
 firebase.json
-
+/.vscode
 
 # production
 /build
